@@ -1,0 +1,52 @@
+{
+  "info": {
+    "name": "KPO KR3 Postman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{ \"userId\": \"<user-id>\", \"amount\": 100 }" },
+        "url": { "raw": "http://localhost:5001/api/orders", "protocol": "http", "host": ["localhost"], "port": "5001", "path": ["api","orders"] }
+      }
+    },
+    {
+      "name": "List Orders",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5001/api/orders?userId=<user-id>", "protocol": "http", "host": ["localhost"], "port": "5001", "path": ["api","orders"], "query":[{"key":"userId","value":"<user-id>"}] }
+      }
+    },
+    {
+      "name": "Get Order By Id",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5001/api/orders/<order-id>", "protocol": "http", "host": ["localhost"], "port": "5001", "path": ["api","orders","<order-id>"] }
+      }
+    },
+    {
+      "name": "Create Account",
+      "request": {
+        "method": "POST",
+        "url": { "raw": "http://localhost:5002/api/payments/create?userId=<user-id>", "protocol": "http", "host": ["localhost"], "port": "5002", "path": ["api","payments","create"], "query":[{"key":"userId","value":"<user-id>"}] }
+      }
+    },
+    {
+      "name": "Top Up Account",
+      "request": {
+        "method": "POST",
+        "url": { "raw": "http://localhost:5002/api/payments/topup?userId=<user-id>&amount=200", "protocol": "http", "host": ["localhost"], "port": "5002", "path": ["api","payments","topup"], "query":[{"key":"userId","value":"<user-id>"},{"key":"amount","value":"200"}] }
+      }
+    },
+    {
+      "name": "Get Balance",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5002/api/payments/balance?userId=<user-id>", "protocol": "http", "host": ["localhost"], "port": "5002", "path": ["api","payments","balance"], "query":[{"key":"userId","value":"<user-id>"}] }
+      }
+    }
+  ]
+}

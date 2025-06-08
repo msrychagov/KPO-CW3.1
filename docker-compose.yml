@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  order-service:
+    build:
+        context: .
+        dockerfile: ./OrderService/Dockerfile
+    environment:
+      - RabbitMQ__Host=rabbitmq
+    ports:
+      - "5001:80"
+    depends_on:
+      - rabbitmq
+  payment-service:
+    build: ./PaymentService
+    environment:
+      - RabbitMQ__Host=rabbitmq
+    ports:
+      - "5002:80"
+    depends_on:
+      - rabbitmq
